@@ -31,6 +31,17 @@ ENVOY_ORG = "envoyproxy"
 
 ENVOY_REPO = "envoy"
 
+
+http_archive(
+    name = "net_zlib",
+    urls = ["https://github.com/madler/zlib/archive/refs/tags/v1.2.13.tar.gz"],
+    strip_prefix = "zlib-1.2.13",
+    build_file = "//bazel:BUILD",
+    patches = ["//bazel:zlib_lseek_fix.patch"],
+    patch_args = ["-p1", "-g1"],
+)
+
+
 # To override with local envoy, just pass `--override_repository=envoy=/PATH/TO/ENVOY` to Bazel or
 # persist the option in `user.bazelrc`.
 http_archive(

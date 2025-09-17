@@ -29,7 +29,7 @@ export CXX=${CXX:-/usr/lib/llvm/bin/clang++}
 export ARCH_SUFFIX="${ARCH_SUFFIX+-${ARCH_SUFFIX}}"
 
 # Expliticly stamp.
-BAZEL_BUILD_ARGS="${BAZEL_BUILD_ARGS} --stamp"
+BAZEL_BUILD_ARGS="${BAZEL_BUILD_ARGS} --stamp --verbose_failures --sandbox_debug --noincompatible_sandbox_hermetic_tmp --repo_env=CC=clang"
 
 if [[ "$(uname)" == "Darwin" ]]; then
   BAZEL_CONFIG_ASAN="--config=macos-asan"

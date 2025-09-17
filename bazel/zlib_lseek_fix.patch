@@ -1,0 +1,34 @@
+--- zlib-1.2.13/gzlib.c 2022-10-13 05:06:55.000000000 +0000
++++ zlib-patched/gzlib.c        2025-09-17 11:35:09.302527983 +0000
+@@ -4,6 +4,7 @@
+  */
+
+ #include "gzguts.h"
++#include <unistd.h>
+
+ #if defined(_WIN32) && !defined(__BORLANDC__)
+ #  define LSEEK _lseeki64
+diff -urNp zlib-1.2.13/gzread.c zlib-patched/gzread.c
+--- zlib-1.2.13/gzread.c        2022-10-13 05:06:55.000000000 +0000
++++ zlib-patched/gzread.c       2025-09-17 11:50:30.319476155 +0000
+@@ -4,7 +4,7 @@
+  */
+
+ #include "gzguts.h"
+-
++#include <unistd.h>
+ /* Local functions */
+ local int gz_load OF((gz_statep, unsigned char *, unsigned, unsigned *));
+ local int gz_avail OF((gz_statep));
+diff -urNp zlib-1.2.13/gzwrite.c zlib-patched/gzwrite.c
+--- zlib-1.2.13/gzwrite.c       2022-10-13 05:06:55.000000000 +0000
++++ zlib-patched/gzwrite.c      2025-09-17 11:42:50.442049687 +0000
+@@ -4,7 +4,7 @@
+  */
+
+ #include "gzguts.h"
+-
++#include <unistd.h>
+ /* Local functions */
+ local int gz_init OF((gz_statep));
+ local int gz_comp OF((gz_statep, int));
